@@ -1,0 +1,48 @@
+{
+	"name": "@titanium/jwt",
+	"version": "0.0.1",
+	"description": "JWT parser for Titanium native mobile",
+	"keywords": [
+		"oauth",
+		"jwt",
+		"jsonwebtoken",
+		"titanium",
+		"mobile",
+		"axway",
+		"turbo",
+		"ios",
+		"android",
+		"native",
+		"appcelerator",
+		"brenton-house"
+	],
+	"author": {
+		"name": "Brenton House",
+		"email": "brenton.house@gmail.com",
+		"url": "https://brenton.house"
+	},
+	"maintainers": [
+		{
+			"name": "Brenton House",
+			"email": "brenton.house@gmail.com",
+			"url": "https://brenton.house"
+		}
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "github:brentonhouse/titanium-jwt"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@titanium/eslint-config": "0.0.11",
+		"eslint": "^6.7.2"
+	},
+	"peerDependencies": {},
+	"main": "./jwt.js",
+	"scripts": {
+		"test": "npm install --ignore-scripts && npm run list-files",
+		"list-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
+		"prepublishOnly2": "git pull && bump"
+	}
+}
