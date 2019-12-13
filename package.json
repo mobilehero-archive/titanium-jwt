@@ -33,16 +33,17 @@
 		"type": "git",
 		"url": "github:brentonhouse/titanium-jwt"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@titanium/eslint-config": "0.0.11",
 		"eslint": "^6.7.2"
 	},
-	"peerDependencies": {},
+	"peerDependencies": {
+		"@titanium/crypto": "0.0.1"
+	},
 	"main": "./jwt.js",
 	"scripts": {
 		"test": "npm install --ignore-scripts && npm run list-files",
 		"list-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prepublishOnly2": "git pull && bump"
+		"prepublishOnly": "git pull && bump"
 	}
 }

@@ -10,13 +10,13 @@
 /**
  * Module dependencies.
  */
-var crypto = require('crypto');
+const crypto = require('crypto');
 
 
 /**
  * Support algorithm mapping.
  */
-var algorithmMap = {
+const algorithmMap = {
 	HS256: 'sha256',
 	HS384: 'sha384',
 	HS512: 'sha512',
@@ -26,7 +26,7 @@ var algorithmMap = {
 /**
  * Map algorithm to hmac or sign type, to determine which crypto function to use.
  */
-var typeMap = {
+const typeMap = {
 	HS256: 'hmac',
 	HS384: 'hmac',
 	HS512: 'hmac',
@@ -37,7 +37,7 @@ var typeMap = {
 /**
  * Expose object.
  */
-var jwt = module.exports;
+const jwt = module.exports;
 
 
 /**
@@ -51,8 +51,8 @@ jwt.version = '0.5.6';
  * @param {object} token
  * @param {string} key
  * @param {boolean} [noVerify]
- * @param {String} [algorithm]
- * @return {Object} payload
+ * @param {string} [algorithm]
+ * @returns {object} payload
  * @api public
  */
 jwt.decode = function jwt_decode(token, key, noVerify, algorithm) {
@@ -61,33 +61,33 @@ jwt.decode = function jwt_decode(token, key, noVerify, algorithm) {
 		throw new Error('No token supplied');
 	}
 	// check segments
-	var segments = token.split('.');
+	const segments = token.split('.');
 	if (segments.length !== 3) {
 		throw new Error('Not enough or too many segments');
 	}
 
 	// All segment should be base64
-	var headerSeg = segments[0];
-	var payloadSeg = segments[1];
-	var signatureSeg = segments[2];
+	const headerSeg = segments[0];
+	const payloadSeg = segments[1];
+	const signatureSeg = segments[2];
 
 	// base64 decode and parse JSON
-	var header = JSON.parse(base64urlDecode(headerSeg));
-	var payload = JSON.parse(base64urlDecode(payloadSeg));
+	const header = JSON.parse(base64urlDecode(headerSeg));
+	const payload = JSON.parse(base64urlDecode(payloadSeg));
 
 	if (!noVerify) {
 		if (!algorithm && /BEGIN( RSA)? PUBLIC KEY/.test(key.toString())) {
 			algorithm = 'RS256';
 		}
 
-		var signingMethod = algorithmMap[algorithm || header.alg];
-		var signingType = typeMap[algorithm || header.alg];
+		const signingMethod = algorithmMap[algorithm || header.alg];
+		const signingType = typeMap[algorithm || header.alg];
 		if (!signingMethod || !signingType) {
 			throw new Error('Algorithm not supported');
 		}
 
 		// verify signature. `sign` will return base64 string.
-		var signingInput = [ headerSeg, payloadSeg ].join('.');
+		const signingInput = [ headerSeg, payloadSeg ].join('.');
 		if (!verify(signingInput, key, signingMethod, signingType, signatureSeg)) {
 			throw new Error('Signature verification failed');
 		}
@@ -112,9 +112,9 @@ jwt.decode = function jwt_decode(token, key, noVerify, algorithm) {
  *
  * @param {object} payload
  * @param {string} key
- * @param {String} algorithm
- * @param {Object} options
- * @returns {String} token
+ * @param {string} algorithm
+ * @param {object} options
+ * @returns {string} token
  * @api public
  */
 jwt.encode = function jwt_encode(payload, key, algorithm, options) {
@@ -128,20 +128,20 @@ jwt.encode = function jwt_encode(payload, key, algorithm, options) {
 		algorithm = 'HS256';
 	}
 
-	var signingMethod = algorithmMap[algorithm];
-	var signingType = typeMap[algorithm];
+	const signingMethod = algorithmMap[algorithm];
+	const signingType = typeMap[algorithm];
 	if (!signingMethod || !signingType) {
 		throw new Error('Algorithm not supported');
 	}
 
 	// header, typ is fixed value.
-	var header = { typ: 'JWT', alg: algorithm };
+	const header = { typ: 'JWT', alg: algorithm };
 	if (options && options.header) {
 		assignProperties(header, options.header);
 	}
 
 	// create segments, all segments should be base64 string
-	var segments = [];
+	const segments = [];
 	segments.push(base64urlEncode(JSON.stringify(header)));
 	segments.push(base64urlEncode(JSON.stringify(payload)));
 	segments.push(sign(segments.join('.'), key, signingMethod, signingType));
@@ -154,7 +154,7 @@ jwt.encode = function jwt_encode(payload, key, algorithm, options) {
  */
 
 function assignProperties(dest, source) {
-	for (var attr in source) {
+	for (const attr in source) {
 		if (source.hasOwnProperty(attr)) {
 			dest[attr] = source[attr];
 		}
@@ -174,7 +174,7 @@ function verify(input, key, method, type, signature) {
 }
 
 function sign(input, key, method, type) {
-	var base64str;
+	let base64str;
 	if (type === 'hmac') {
 		base64str = crypto.createHmac(method, key).update(input).digest('base64');
 	} else if (type == 'sign') {
