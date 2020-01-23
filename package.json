@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "JWT parser for Titanium native mobile",
 	"keywords": [
 		"oauth",
@@ -38,7 +38,7 @@
 		"eslint": "^6.8.0"
 	},
 	"peerDependencies": {
-		"@titanium/polyfill": ">=0.0.3"
+		"@titanium/polyfill": ">=0.0.5"
 	},
 	"main": "./jwt.js",
 	"scripts": {
