@@ -1,5 +1,7 @@
 # Licenses
 
+------
+
 ## JWT-Simple
 
 ### The MIT License (MIT)
