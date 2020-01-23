@@ -42,7 +42,7 @@
 	},
 	"main": "./jwt.js",
 	"scripts": {
-		"test": "npm install --ignore-scripts && npm run list-files",
+		"test": "npm install --ignore-scripts && npm run list",
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
 		"prepublishOnly": "git pull && bump"
 	}
