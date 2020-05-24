@@ -117,25 +117,25 @@ jwt.decode = function jwt_decode(token, key, noVerify, algorithm) {
  * @returns {string} token
  * @api public
  */
-jwt.encode = function jwt_encode(payload, key, algorithm, options) {
+jwt.sign = function jwt_encode(payload, key, algorithm, options = {}) {
 	// Check key
 	if (!key) {
 		throw new Error('Require key');
 	}
 
 	// Check algorithm, default is HS256
-	if (!algorithm) {
-		algorithm = 'HS256';
+	if (!options.algorithm) {
+		options.algorithm = 'HS256';
 	}
 
-	const signingMethod = algorithmMap[algorithm];
-	const signingType = typeMap[algorithm];
+	const signingMethod = algorithmMap[options.algorithm];
+	const signingType = typeMap[options.algorithm];
 	if (!signingMethod || !signingType) {
 		throw new Error('Algorithm not supported');
 	}
 
 	// header, typ is fixed value.
-	const header = { typ: 'JWT', alg: algorithm };
+	const header = { typ: 'JWT', alg: options.algorithm };
 	if (options && options.header) {
 		assignProperties(header, options.header);
 	}
@@ -164,7 +164,7 @@ function assignProperties(dest, source) {
 function verify(input, key, method, type, signature) {
 	if (type === 'hmac') {
 		return (signature === sign(input, key, method, type));
-	} else if (type == 'sign') {
+	} else if (type === 'sign') {
 		return crypto.createVerify(method)
 			.update(input)
 			.verify(key, base64urlUnescape(signature), 'base64');
@@ -177,7 +177,7 @@ function sign(input, key, method, type) {
 	let base64str;
 	if (type === 'hmac') {
 		base64str = crypto.createHmac(method, key).update(input).digest('base64');
-	} else if (type == 'sign') {
+	} else if (type === 'sign') {
 		base64str = crypto.createSign(method).update(input).sign(key, 'base64');
 	} else {
 		throw new Error('Algorithm type not recognized');
