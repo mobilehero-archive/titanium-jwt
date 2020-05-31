@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"description": "JWT parser for Titanium native mobile",
 	"keywords": [
 		"oauth",
@@ -44,6 +44,6 @@
 	"scripts": {
 		"test": "npm install --ignore-scripts && npm run list",
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prepublishOnly": "git pull && bump"
+		"prepublishOnly2": "git pull && bump"
 	}
 }
