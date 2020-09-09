@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "0.0.11",
+	"version": "0.0.12",
 	"description": "JWT parser for Titanium native mobile",
 	"keywords": [
 		"oauth",
@@ -38,12 +38,15 @@
 		"eslint": "^7.8.1"
 	},
 	"peerDependencies": {
-		"@titanium/polyfill": ">=0.0.9"
+		"@titanium/polyfill": ">=0.0.9",
+		"@geek/logger": ">=0.0.1",
+		"moment": "^2.27.0",
+		"lodash": "^4.17.20"
 	},
 	"main": "./jwt.js",
 	"scripts": {
 		"test": "npm install --ignore-scripts && npm run list",
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prepublishOnly2": "git pull && bump"
+		"prepublishOnly": "git pull && bump"
 	}
 }
