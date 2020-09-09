@@ -5,17 +5,17 @@ const moment = require('moment');
 // const logger = require('@geek/logger');
 
 class AuthToken {
-	constructor(data, params = {}) {
+	constructor(data = {}, params = {}) {
 		console.debug('🔒  you are here →   AuthToken.constructor');
-		this.token_type = data.token_type && data.token_type.toLowerCase();
+		this.token_type = (data.token_type && data.token_type.toLowerCase()) || 'bearer';
 		this.access_token = data.access_token;
 		this.refresh_token = data.refresh_token;
-		this.parseExpiresIn(Number(data.expires_in));
+		data.expires_in && this.parseExpiresIn(Number(data.expires_in));
 		this.raw = _.omit(data, [ 'token_type', 'access_token', 'refresh_token', 'expires_in' ]);
 
 
 		this.access_token_jwt = jsonwebtoken.decode(this.access_token, params.key);
-		this.refresh_token_jwt = jsonwebtoken.decode(this.refresh_token, null, true);
+		this.refresh_token_jwt = this.refresh_token ? jsonwebtoken.decode(this.refresh_token, null, true) : undefined;
 		// console.debug(`this.jwt: ${JSON.stringify(this.jwt, null, 2)}`);
 
 		if (this.access_token_jwt) {
