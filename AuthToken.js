@@ -28,6 +28,7 @@ class AuthToken {
 				last_name:      this.access_token_jwt.family_name,
 				formatted_name: this.access_token_jwt.name,
 				email:          this.access_token_jwt.email,
+				subject_id:     this.access_token_jwt.sub,
 				scopes:         _.split(_.trim(this.access_token_jwt.scope || ''), /\s+/g).filter(o => o),
 			};
 			this.issuer = this.access_token_jwt.iss;
