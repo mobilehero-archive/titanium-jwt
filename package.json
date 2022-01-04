@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "JWT parser for Titanium native mobile",
 	"keywords": [
 		"oauth",
@@ -17,6 +17,8 @@
 		"axway-amplify",
 		"amplify",
 		"api-builder",
+		"titanium-sdk",
+		"axway-sdk",
 		"brenton-house"
 	],
 	"homepage": "https://brenton.house/saying-goodbye-to-axway-amplify-titanium-31a44f3671de",
