@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "JWT parser for Titanium native mobile",
 	"keywords": [
 		"oauth",
@@ -14,8 +14,12 @@
 		"android",
 		"native",
 		"appcelerator",
+		"axway-amplify",
+		"amplify",
+		"api-builder",
 		"brenton-house"
 	],
+	"homepage": "https://brenton.house/saying-goodbye-to-axway-amplify-titanium-31a44f3671de",
 	"author": {
 		"name": "Brenton House",
 		"email": "brenton.house@gmail.com",
@@ -48,9 +52,10 @@
 	},
 	"main": "./jwt.js",
 	"scripts": {
-		"test": "npm install --ignore-scripts && npm run list",
+		"prep": "npm install --ignore-scripts && npm run list",
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-		"prepublishOnly": "git pull && bump",
-		"lint": "eslint . --fix"
+		"prepublishOnly": "git pull && bump insane",
+		"lint": "eslint . --fix",
+		"test": "npm run prep"
 	}
 }
