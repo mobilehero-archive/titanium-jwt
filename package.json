@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "⭐  Axway Amplify module to add JWT parser for Appcelerator Titanium SDK",
 	"keywords": [
 		"oauth",
