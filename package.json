@@ -1,6 +1,6 @@
 {
 	"name": "@titanium/jwt",
-	"version": "1.0.44",
+	"version": "1.0.45",
 	"description": "⭐  Axway Amplify module to add JWT parser for Appcelerator Titanium SDK",
 	"keywords": [
 		"oauth",
@@ -44,9 +44,9 @@
 	},
 	"devDependencies": {
 		"@titanium/eslint-config": ">=1.0.48",
-		"eslint": "^8.10.0",
+		"eslint": "^8.11.0",
 		"eslint-plugin-import": "^2.25.4",
-		"eslint-plugin-jsdoc": "^37.9.7",
+		"eslint-plugin-jsdoc": "^38.0.3",
 		"eslint-plugin-promise": "^6.0.0"
 	},
 	"peerDependencies": {
@@ -84,7 +84,7 @@
 		"@titanium/module-copier": "^1.0.50",
 		"@titanium/please": "^1.0.53",
 		"@titanium/querystring": "^1.0.42",
-		"@titanium/tiapp-xml": "^1.0.52",
+		"@titanium/tiapp-xml": "^1.0.53",
 		"@titanium/titanium": "^5.4.50",
 		"@titanium/turbo": "^2.2.69"
 	}
